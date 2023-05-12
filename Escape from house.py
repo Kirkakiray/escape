@@ -1,4 +1,5 @@
 from pygame import *
+from random import randint
 window = display.set_mode((700, 500))
 display.set_caption('Escape from house')
 background = transform.scale(image.load('wall.jpg'), (700, 500))
@@ -20,6 +21,8 @@ class GameSprite(sprite.Sprite):
     def reset(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
+
+
 class Player(GameSprite):
     def update(self):
         keys_pressed = key.get_pressed()
@@ -32,8 +35,11 @@ class Player(GameSprite):
         if keys_pressed[K_DOWN] and self.rect.y < 395:
             self.rect.y += self.speed
 
-player = Player(('gg.png'), 50, 400, 80, 80, 4)
 
+
+
+player = Player(('gg.png'), 50, 400, 80, 80, 4)
+door = GameSprite(('door.png'), randint(20, 680), randint(20, 480), 50, 50, 0)
 game = True 
 finish = False
 while game:
@@ -45,7 +51,8 @@ while game:
         window.blit(background,(0, 0))
         player.update()
         player.reset()
-
+        door.update()
+        door.reset()
 
     
 
