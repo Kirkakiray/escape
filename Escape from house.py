@@ -23,16 +23,16 @@ class GameSprite(sprite.Sprite):
 class Player(GameSprite):
     def update(self):
         keys_pressed = key.get_pressed()
-        if keys_pressed[K_LEFT] and x > 5:
-            x -= speed
-        if keys_pressed[K_RIGHT] and x < 595:
-            x += speed
-        if keys_pressed[K_UP] and y > 5:
-            y -= speed
-        if keys_pressed[K_DOWN] and y < 395:
-            y += speed
+        if keys_pressed[K_LEFT] and self.rect.x > 5:
+            self.rect.x -= self.speed
+        if keys_pressed[K_RIGHT] and self.rect.x < 595:
+            self.rect.x += self.speed
+        if keys_pressed[K_UP] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys_pressed[K_DOWN] and self.rect.y < 395:
+            self.rect.y += self.speed
 
-player = Player(('gg.png'), 50, 400, 80, 80, 10)
+player = Player(('gg.png'), 50, 400, 80, 80, 4)
 
 game = True 
 finish = False
