@@ -58,14 +58,15 @@ class Player(GameSprite):
 
 player = Player(('gg.png'), 50, 400, 80, 80, 3)
 door = GameSprite(('door.png'), randint(20, 680), randint(20, 480), 100, 100, 0)
+lastt = timer()
 
-time = 20
 game = True
 finish = False
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+    
 
     if not finish:       
         window.blit(background,(0, 0))
@@ -74,14 +75,16 @@ while game:
         door.update()
         door.reset()
 
-
+        nowt = timer()
+        if nowt - lastt >= 20:
+            window.blit(lose,(10, 50))
 
         if sprite.collide_rect(player, door):
             score = score + 1
             door = GameSprite(('door.png'), randint(20, 660), randint(20, 460), 100, 100, 0)
             '''sound.play()'''
         
-        ''' window.blit(lose,(10, 50))'''
+        
             
 
         if score >= goal:
